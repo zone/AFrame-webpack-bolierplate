@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="no" />
+    <title>AFrame boilerplate</title>
+</head>
+
+<body>
+
+    <body>
+        <!-- Define a main scene. Debug true makes coliders visible. -->
+        <a-scene shadow="type: pcfsoft" physics="debug: true">
+
+            <!-- Initiate Asset Management System. Used to preload entities -->
+            <a-assets>
+                <a-asset-item id="little_tokyo" src="imgs/little_tokyo/scene.gltf"> </a-asset-item>
+                <img id="sky" src="imgs/51203056553_04dd0d7c01_6k.jpeg">
+            </a-assets>
+
+            <!-- Add a sky sphere -->
+            <a-sky src="#sky"></a-sky>
+
+            <!-- Add an ambient light (diffuse light in the scene) -->
+            <a-entity light="type: ambient; intensity: 0.3;"></a-entity>
+
+            <!-- Add a box to the scene. 
+                    - Present it 2 meters in the air so that it falls when the scene initiates. 
+
+                    - Give it material properties, and give it ability to be transparent otherwise the opacity only influences hue. 
+
+                    - Add all possible magic-hands components (hoverable grabbable stretchable draggable dropppable). 
+                      Draggable and droppable only emit events, nothing to see out of the box.
+
+                    - Shadow initiates shadows (cast and receive by default). 
+                
+                    - dynamic-body includes body in physic calculations
+                
+                    - see-through is a demo custom component. It makes object semi-transparent when grabbed (see index.js) 
+            -->
+            <a-box position="2 2 0" id="blue-demo-box" rotation="0 45 0"
+                material="color: #4CC3D9; opacity:1; transparent: true" hoverable grabbable stretchable draggable
+                dropppable shadow dynamic-body grab-see-through></a-box>
+
+            <!-- Add a directional (default type) light to the scene. shadowCameraVisible: true will make shadow camera visible. 
+                 when adding items with complex parameters to the scene it is usually useful to use inspector (ctrl+alt+i) to 
+                 precisely configure entity. 
+                
+                 Light "looks at" the box. Moving the box will move the angle of the light. Please note how the "shadow camera"
+                 behaves. Also note the bias artifacts on the buildings.
+                -->
+            <a-entity light="castShadow: true; 
+                            intensity: 1; 
+                            shadowCameraVisible: true; 
+                            decay: 0; 
+                            shadowBias: -0.002; 
+                            shadowCameraFar: 46.72; 
+                            shadowCameraFov: 90.06; 
+                            shadowCameraNear: 0.37; 
+                            shadowCameraTop: 11.91; 
+                            shadowCameraLeft: -14.3; 
+                            shadowMapHeight: 2048; 
+                            shadowMapWidth: 2048; 
+                            shadowRadius: 3.26; 
+                            target: #blue-demo-box" position="-14.9645 7.91413 5.19792">
+            </a-entity>
+
+            <!-- Add a green plane to hide Guernsey and give a box something to bounce off-->
+            <a-plane position="0 0 0" rotation="-90 0 0" width="400" height="400" color="#7BC8A4" static-body shadow>
+            </a-plane>
+
+            <!-- Add Little Tokyo model, run animation baked into it, and make it cast and receive shadows/ -->
+            <a-gltf-model gltf-model="#little_tokyo" scale="0.025 0.025 0.025" position="2.00491 4.98346 -5.90788"
+                animation-mixer="" shadow></a-gltf-model>
+
+            <!-- Setup Player entity (camera, hands) and hook to teleport. Note how cameraRig "contains" elements -->
+            <a-entity id="cameraRig">
+                <a-entity id="head" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
+                <!-- static-body sphere is added to hands as a "collider". Colliders trigger events when collide with 
+                     objects in the list. This will collide with any a-box node in the scene.  Any selector can be used 
+                     i.e. class or id. -->
+                <a-entity id="leftHand" static-body="shape: sphere; sphereRadius: 0.02;"
+                    sphere-collider="objects: a-box" super-hands
+                    hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
+
+                <!-- Teleport is rigged only to right controller (to demo) -->
+                <a-entity id="rightHand" static-body="shape: sphere; sphereRadius: 0.02;"
+                    sphere-collider="objects: a-box" super-hands
+                    hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"
+                    teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend;"
+                    input-listen>
+                </a-entity>
+            </a-entity>
+
+
+        </a-scene>
+    </body>
+</body>
+
+</html>

@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
+
+$left-bar-colour: #383838;
+$ratio: 1.61803398875;
+$relative-small: (100 - (100 / $ratio));
+$relative-big: (100 / $ratio);
+$right-bar-width: 38.1966vw;
+
+$back-color: #212121;
+$input-colour: #2e2e2e;
+$accent: #ba86fc;
+$card-back: #272727;
+$main-text: #acacac;
+$heading-back: #454545;
+$buttons-popup: #5d5d5d;
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1300px,
+    xxl: 1550px,
+);
+
+$theme-colors: (
+    'primary': $main-text,
+    'danger': $accent,
+);
+
+@import '~bootstrap/scss/bootstrap';
+
+body {
+    background-color: $back-color;
+    color: $main-text;
+
+    .dataDload {
+        background-image: url('../imgs/download.svg');
+        color: transparent;
+        background-position-y: center;
+        background-repeat: no-repeat;
+        &:hover {
+            color: transparent;
+        }
+    }
+
+    .mostly-customized-scrollbar::-webkit-scrollbar {
+        width: 5px;
+        height: 8px;
+        background-color: transparent; /* or add it to the track */
+    }
+
+    /* Add a thumb */
+    .mostly-customized-scrollbar::-webkit-scrollbar-thumb {
+        background: $input-colour;
+    }
+
+    .invisible-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.titleHolder {
+    height: 50px;
+    background-color: black;
+    padding-top: 5px;
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 400;
+        background-color: black;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+}
+
+.tbl {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px;
+}
+.on {
+    .cardBody {
+        &:hover {
+            border: 3px solid $accent !important;
+            margin-bottom: 1px;
+        }
+    }
+}
+.cardHolder {
+    padding: 10px;
+    height: 100%;
+    align-content: flex-start;
+
+    .cardBody {
+        font-size: 0.75rem;
+        height: 100%;
+        background-color: $card-back;
+        -webkit-box-shadow: 0px 3px 6px 1px rgba(23, 23, 23, 0.6);
+        box-shadow: 0px 3px 6px 1px rgba(23, 23, 23, 0.6);
+        border-bottom: 2px solid $card-back;
+        border-radius: 6px;
+        overflow: hidden;
+        &:hover {
+            border-bottom: 2px solid $accent !important;
+            input {
+                background-color: $heading-back;
+                font-weight: bold;
+                // border: 1px solid $main-text !important;
+                outline: $left-bar-colour solid 2px;
+            }
+            .cardLabel {
+                background-color: $accent !important;
+                color: #212121;
+            }
+        }
+
+        .cardLabel {
+            font-weight: bold;
+            text-transform: capitalize;
+            background-color: $heading-back;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            .fixme {
+                padding-left: 15px;
+            }
+        }
+        .cardDescription {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 0.5rem;
+        }
+    }
+}
+
+.spanLabel {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+}
+
+.dbg {
+    background-color: red;
+    color: white;
+}
+
+.leftBar {
+    max-width: 300px;
+    height: 100vh;
+    background-color: $left-bar-colour;
+
+    .separator {
+        border-right: 2px solid $back-color;
+    }
+
+    .cardHolder {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    #buttons {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .cardBody {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .simHolder {
+        background-color: #272727;
+        padding-top: 20px;
+
+        .paramTitle {
+            text-transform: capitalize;
+        }
+
+        table {
+            border-style: inherit;
+        }
+    }
+    .buttonsHolder {
+        max-height: 555px;
+        transition: max-height 0.25s ease-in-out;
+        overflow-y: auto;
+        background-color: #444444;
+        border-bottom: 1px solid $accent;
+
+        .dataButton {
+            margin: 10px;
+            font-size: 0.75rem;
+            background-color: #272727;
+            color: #acacac;
+        }
+    }
+
+    .collapsed {
+        max-height: 0 !important;
+    }
+
+    .dataOpenHolder {
+        background-color: black;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        cursor: pointer;
+        &:hover {
+            background-color: $accent;
+            color: $back-color;
+        }
+    }
+}
+
+.changedParamHolder {
+    padding-top: 10px;
+    background-color: black;
+    h3 {
+        font-size: 0.9rem;
+    }
+
+    ol {
+        font-size: 0.76rem;
+    }
+}
+
+.activePanel {
+    opacity: 1 !important;
+    height: calc(100vh - 120px) !important;
+}
+
+.rightBar {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+
+    .selected {
+        background-color: $accent;
+        border-bottom: 2px solid $accent !important;
+    }
+
+    .btn {
+        background-color: $back-color;
+        border: none;
+        &:focus {
+            outline: none;
+            box-shadow: none !important;
+            // border: none !important;
+        }
+        &:hover {
+            background-color: $accent;
+            color: black;
+        }
+    }
+
+    #chartPanel {
+        opacity: 0;
+        height: 0.1vh;
+    }
+
+    #chartHolder {
+        height: 100%;
+        width: 100%;
+    }
+
+    #sysPanelHolder {
+        height: 0px;
+        overflow: hidden;
+    }
+
+    #svgHolder {
+        overflow-y: scroll;
+        height: 100%;
+    }
+
+    #paramsPanel {
+        height: 0vh;
+        width: 100%;
+        overflow: hidden;
+        padding-left: 30px;
+
+        #formHolder {
+            overflow-y: scroll;
+            height: 80%;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        input {
+            width: 100%;
+            background-color: $input-colour;
+            color: white;
+            border: none;
+        }
+    }
+
+    #startHolder {
+        height: 70px;
+        padding: 10px;
+
+        #startButton {
+            background-color: $input-colour;
+            border: 2px solid $accent;
+            color: $main-text;
+            box-shadow: none;
+            &:hover {
+                background-color: $accent;
+                color: black;
+            }
+        }
+    }
+}
