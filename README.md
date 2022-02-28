@@ -37,4 +37,3 @@ To be able to run "compile" and package code, you have to use [Node.js](https://
 1. `package.json` defines three scripts you can run: `watch`, `build`, and `test`. To run them use `npm run` command, for example you would want to use `npm run watch` to initiate npm in the watch mode. Any change to any files in src will automatically trigger build. To prepare and optimise the build run `npm run build`.  
 
     Code is compiled to the `dist` folder.
-
