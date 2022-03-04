@@ -2,8 +2,10 @@
 
 This boilerplate aims to solve two problems:
 
-1. CSP restriction on VR devices
-2. Collect and configure minimal set of functionalities for successful room-scale VR experiences
+1. CSP restriction on some environments and VR devices
+1. Use of familiar tooling and NPM
+1. Extending functionality with existing frameworks i.e. [`aframe-react`](https://github.com/supermedium/aframe-react#readme). This has **NOT BEEN TESTED** further than a build.
+1. Collect and configure minimal set of functionalities for successful room-scale VR experiences
 
 ## CSP restrictions
 The CSP for VR devices is very strict, and whilst things work really nice in browser, running Glitch or loading scripts from CDN sometimes fails when trying to use Vive or Oculus devices.
@@ -20,13 +22,13 @@ The easiest way to ensure everything loads and works properly is to serve every 
 1. Teleport using aframe-teleport-controls
 
     ![super-hands](readme_assets/aframe.gif)
-1. Demonstrate custom componet which truns object transparent when grabbed. Also note that the shadow camera target is linked to the box. Moving the box moves the angle of the light.
+1. Demonstrate custom component which turns object transparent when grabbed. Also note that the shadow camera target is linked to the box. Moving the box moves the angle of the light.
 
     ![super-hands](readme_assets/aframe3.gif)
-1. Demostrate shadow camera
+1. Demonstrate shadow camera
 
     ![super-hands](readme_assets/aframe4.gif)
-1. Demostrate physics
+1. Demonstrate physics
 
     ![super-hands](readme_assets/aframe5.gif)
 
@@ -49,7 +51,7 @@ To be able to run "compile" and package code, you have to use [Node.js](https://
             worker = require('./worker'),
             protocol = require('../utils/protocol')
     
-    if you do not do this, the console will display the followig error:
+    if you do not do this, the console will display the following error:
 
             index.js:1 Uncaught ReferenceError: arguments is not defined
             at Object.8034 (index.js:1)
