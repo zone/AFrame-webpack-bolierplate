@@ -38,6 +38,8 @@ The easiest way to ensure everything loads and works properly is to serve every 
 
 To be able to run "compile" and package code, you have to use [Node.js](https://nodejs.dev/). This boilerplate was build and tested on `Node.js v16.14.0`
 
+You need SSH working with GitHub for `npm install` to run as AFrame uses it. Follow the instructions [from GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh). 
+
 # Installation
 
 1. Once you have this code checked out, initiate the build install all the necessary packages. Open the directory where you have downloaded the code in terminal, and run `npm install`
@@ -71,3 +73,9 @@ To be able to run "compile" and package code, you have to use [Node.js](https://
 
 # Demo
 You can find the complied demo on [our hackathon page](https://zonehackvr.z33.web.core.windows.net/awp/index.html).
+
+
+# Troubleshooting
+ If you get an error at the end of the install then you need to set up GitHub to use SSH keys. See prerequisites above.
+    ![super-hands](readme_assets/SSH-error.png)
+
