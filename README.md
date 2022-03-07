@@ -38,7 +38,7 @@ The easiest way to ensure everything loads and works properly is to serve every 
 
 To be able to run "compile" and package code, you have to use [Node.js](https://nodejs.dev/). This boilerplate was build and tested on `Node.js v16.14.0`
 
-You need SSH working with GitHub for `npm install` to run as AFrame uses it. Follow the instructions here [our hackathon page](https://docs.github.com/en/authentication/connecting-to-github-with-ssh). 
+You need SSH working with GitHub for `npm install` to run as AFrame uses it. Follow the instructions [from GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh). 
 
 # Installation
 
